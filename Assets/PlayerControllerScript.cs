@@ -13,6 +13,7 @@ public class PlayerControllerScript : MonoBehaviour
     public Transform attackPoint;
     public float damage = 20f;
     public float health = 100f;
+    public float dashDelay = 2f;
 
     private Rigidbody2D m_body;
     private Animator m_animator;
@@ -20,6 +21,7 @@ public class PlayerControllerScript : MonoBehaviour
     private bool m_isAttacking = false;
     private float m_curHealth;
     private bool m_isAbleToMove = true;
+    private float m_dashDelay;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +33,7 @@ public class PlayerControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(m_attackDelay > 0f)
-            m_attackDelay -= Time.deltaTime;
+        UpdateDelays();
 
         var input = Input.GetAxis("Horizontal");
 
@@ -48,9 +49,19 @@ public class PlayerControllerScript : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
             Attack();
 
+        if(Input.GetButtonDown("Dash"))
+            Dash();
+
         Move(input);
 
         UpdateAnimator();
+    }
+
+    private void UpdateDelays(){
+        if(m_dashDelay > 0)
+            m_dashDelay -= Time.deltaTime;
+        if(m_attackDelay > 0)
+            m_attackDelay -= Time.deltaTime;
     }
 
     private void Jump(){
@@ -85,6 +96,20 @@ public class PlayerControllerScript : MonoBehaviour
         m_body.velocity = new Vector2(groundSensor.State() ? 0 : m_body.velocity.x, m_body.velocity.y);
         m_animator.SetTrigger("Attack");
         Invoke("Hit", attackDelay / 1.5f);
+    }
+
+    private void Dash(){
+        if(m_dashDelay > 0 || !m_isAbleToMove || !groundSensor.State())
+            return;
+        m_dashDelay = dashDelay;
+        m_animator.SetTrigger("Dash");
+        m_isAbleToMove = false;
+        m_body.velocity = new Vector2(speed * 3 * transform.localScale.x, m_body.velocity.y);
+        Invoke("EndDash", 0.375f);
+    }
+
+    private void EndDash(){
+        m_isAbleToMove = true;
     }
 
     private void Hit(){

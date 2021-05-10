@@ -21,10 +21,12 @@ public class SurfaceSensorScript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log($"Trigger enter: {other.name}");
         m_colCount += 1;
     }
 
     private void OnTriggerExit2D(Collider2D other) {
+        Debug.Log($"Trigger exit: {other.name}");
         m_colCount -= 1;
     }
 }

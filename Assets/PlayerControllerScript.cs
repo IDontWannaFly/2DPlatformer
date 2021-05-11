@@ -9,6 +9,7 @@ public class PlayerControllerScript : MonoBehaviour
     public float attackRange;
     public float jumpForce;
     public SurfaceSensorScript groundSensor;
+    public SurfaceSensorScript wallSensor;
     public LayerMask enemyLayers;
     public Transform attackPoint;
     public float damage = 20f;
@@ -43,7 +44,7 @@ public class PlayerControllerScript : MonoBehaviour
             Flip();
 
         var jump = Input.GetButtonDown("Jump");
-        if(groundSensor.State() && jump)
+        if(jump)
             Jump();
 
         if(Input.GetButtonDown("Fire1"))
@@ -53,6 +54,9 @@ public class PlayerControllerScript : MonoBehaviour
             Dash();
 
         Move(input);
+
+        if(wallSensor.State() && !groundSensor.State() && input == transform.localScale.x)
+            m_body.velocity = new Vector2(m_body.velocity.x, 0f);
 
         UpdateAnimator();
     }
@@ -65,9 +69,17 @@ public class PlayerControllerScript : MonoBehaviour
     }
 
     private void Jump(){
-        groundSensor.SetDelay(0.2f);
-        m_animator.SetTrigger("Jump");
-        m_body.velocity = new Vector2(m_body.velocity.x, jumpForce);
+        if(wallSensor.State() && !groundSensor.State()){
+            m_isAbleToMove = false;
+            m_animator.SetTrigger("Jump");
+            m_body.velocity = new Vector2(transform.localScale.x * -1 * speed, jumpForce);
+            Invoke("SetAbleToMove", 0.2f);
+
+        } else if(groundSensor.State()) {
+            groundSensor.SetDelay(0.2f);
+            m_animator.SetTrigger("Jump");
+            m_body.velocity = new Vector2(m_body.velocity.x, jumpForce);
+        }
     }
 
     private void UpdateAnimator(){
@@ -105,10 +117,10 @@ public class PlayerControllerScript : MonoBehaviour
         m_animator.SetTrigger("Dash");
         m_isAbleToMove = false;
         m_body.velocity = new Vector2(speed * 3 * transform.localScale.x, m_body.velocity.y);
-        Invoke("EndDash", 0.375f);
+        Invoke("SetAbleToMove", 0.375f);
     }
 
-    private void EndDash(){
+    private void SetAbleToMove(){
         m_isAbleToMove = true;
     }
 

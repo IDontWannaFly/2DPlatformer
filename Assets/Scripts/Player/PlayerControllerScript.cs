@@ -23,6 +23,13 @@ public class PlayerControllerScript : MonoBehaviour
     private float m_curHealth;
     private bool m_isAbleToMove = true;
     private float m_dashDelay;
+    private bool m_isBackground = false;
+
+    
+    private float m_wallWalkAxis = 0f;
+    private bool m_isWallWalking = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +41,7 @@ public class PlayerControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         UpdateDelays();
 
         var input = Input.GetAxis("Horizontal");
@@ -42,6 +50,8 @@ public class PlayerControllerScript : MonoBehaviour
             Flip();
         else if(input > 0 && transform.localScale.x < 0)
             Flip();
+        else if(input == 0)
+            StopWallWalking();
 
         var jump = Input.GetButtonDown("Jump");
         if(jump)
@@ -56,9 +66,17 @@ public class PlayerControllerScript : MonoBehaviour
         Move(input);
 
         if(wallSensor.State() && !groundSensor.State() && input == transform.localScale.x)
-            m_body.velocity = new Vector2(m_body.velocity.x, 0f);
+            m_body.velocity = new Vector2(m_body.velocity.x, m_body.velocity.y > 0 ? m_body.velocity.y : 0);
 
         UpdateAnimator();
+    }
+
+    public IEnumerator ChangeWalkAxis(float oldValue, float newValue, float duration) {
+        for (float t = 0f; t < duration; t += Time.deltaTime) {
+            m_wallWalkAxis = Mathf.Lerp(oldValue, newValue, t / duration);
+            yield return null;
+        }
+        m_wallWalkAxis = newValue;
     }
 
     private void UpdateDelays(){
@@ -79,7 +97,21 @@ public class PlayerControllerScript : MonoBehaviour
             groundSensor.SetDelay(0.2f);
             m_animator.SetTrigger("Jump");
             m_body.velocity = new Vector2(m_body.velocity.x, jumpForce);
+        } else if(m_isBackground){
+            StartWallWalking();
         }
+    }
+
+    private void StartWallWalking(){
+        m_isWallWalking = true;
+        StartCoroutine(ChangeWalkAxis(0, 360, 2));
+        Invoke("StopWallWalking", 2);
+    }
+
+    private void StopWallWalking(){
+        m_isWallWalking = false;
+        StopCoroutine(ChangeWalkAxis(0, 360, 2));
+        m_wallWalkAxis = 0f;
     }
 
     private void UpdateAnimator(){
@@ -93,7 +125,7 @@ public class PlayerControllerScript : MonoBehaviour
     private void Move(float input){
         if(!m_isAbleToMove)
             return;
-        m_body.velocity = new Vector2(input * speed, m_body.velocity.y);
+        m_body.velocity = new Vector2(input * speed, m_isWallWalking && input != 0 ? speed * Mathf.Sin(m_wallWalkAxis * Mathf.Deg2Rad) / 2  : m_body.velocity.y);
     }
 
     private void Flip(){
@@ -137,5 +169,17 @@ public class PlayerControllerScript : MonoBehaviour
     private void OnDrawGizmosSelected() {
         if(attackPoint != null)
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Background"))
+            m_isBackground = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Background")){
+            m_isBackground = false;
+            StopWallWalking();
+        }
     }
 }

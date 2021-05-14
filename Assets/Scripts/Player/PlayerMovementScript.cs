@@ -11,12 +11,14 @@ public class PlayerMovementScript : MonoBehaviour
     public float speed = 5f;
 
     private Rigidbody2D m_body;
+    private Animator m_animator;
     private float m_direction = 1;
     private State m_state = State.DEFAULT;
     // Start is called before the first frame update
     void Start()
     {
         m_body = GetComponent<Rigidbody2D>();
+        m_animator = GetComponent<Animator>();
         groundSensor?.AttachListener(OnGroundEnter, true);
         groundSensor?.AttachListener(OnGroundExit, false);
         wallSensor?.AttachListener(OnWallEnter, true);
@@ -33,6 +35,9 @@ public class PlayerMovementScript : MonoBehaviour
 
         if(Input.GetButtonDown("Jump"))
             Jump();
+
+        if(Input.GetButtonDown("Dash") && m_state != State.DASH)
+            Dash();
 
         switch(m_state){
             case State.DEFAULT:
@@ -112,6 +117,7 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     private void SimpleJump(){
+        m_animator.SetTrigger("Jump");
         m_body.velocity = new Vector2(m_body.velocity.x, jumpForce);
         groundSensor.SetDelay(0.2f);
     }
@@ -124,7 +130,10 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     private void Dash(){
-        m_body.velocity = new Vector2(m_body.velocity.x + speed, m_body.velocity.y);
+        m_animator.SetTrigger("Dash");
+        m_state = State.DASH;
+        m_body.velocity = new Vector2((Mathf.Abs(m_body.velocity.x) + speed) * m_direction, m_body.velocity.y);
+        StartCoroutine(EndDash(0.5f));
     }
 
     private IEnumerator EndDash(float timer){
@@ -138,7 +147,11 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     private void UpdateAnimator(){
-
+        m_animator.SetBool("IsGrounded", groundSensor.State());
+        if(m_state == State.DEFAULT && m_body.velocity.x != 0)
+            m_animator.SetInteger("AnimState", 1);
+        else if(m_state == State.DEFAULT)
+            m_animator.SetInteger("AnimState", 0);
     }
 
     private void OnGroundExit(Collider2D col){

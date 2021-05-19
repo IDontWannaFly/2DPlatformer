@@ -13,7 +13,7 @@ public class PlayerMovementScript : MonoBehaviour
     private Rigidbody2D m_body;
     private Animator m_animator;
     private float m_direction = 1;
-    private State m_state = State.DEFAULT;
+    private PlayerState m_state;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +23,10 @@ public class PlayerMovementScript : MonoBehaviour
         groundSensor?.AttachListener(OnGroundExit, false);
         wallSensor?.AttachListener(OnWallEnter, true);
         wallSensor?.AttachListener(OnWallExit, false);
+    }
+
+    public void BindState(PlayerState state){
+        m_state = state;
     }
 
     // Update is called once per frame
@@ -36,17 +40,17 @@ public class PlayerMovementScript : MonoBehaviour
         if(Input.GetButtonDown("Jump"))
             Jump();
 
-        if(Input.GetButtonDown("Dash") && m_state != State.DASH)
+        if(Input.GetButtonDown("Dash") && m_state.state != PlayerState.State.DASH)
             Dash();
 
-        switch(m_state){
-            case State.DEFAULT:
+        switch(m_state.state){
+            case PlayerState.State.DEFAULT:
                 Move(input);
                 break;
-            case State.MOVE_ON_WALL:
+            case PlayerState.State.MOVE_ON_WALL:
                 MoveOnWall(input);
                 break;
-            case State.CLIMB_TO_WALL:
+            case PlayerState.State.CLIMB_TO_WALL:
                 ClimbToWall(input);
                 break;
         }
@@ -67,7 +71,7 @@ public class PlayerMovementScript : MonoBehaviour
     private float m_wallMoveDuration = 2f;
     private IEnumerator StartWallWalking(){
         m_moveOnWallMultiplier = 0f;
-        m_state = State.MOVE_ON_WALL;
+        m_state.state = PlayerState.State.MOVE_ON_WALL;
         for(float t = 0f; t < m_wallMoveDuration; t += Time.deltaTime){
             m_moveOnWallMultiplier = Mathf.Lerp(0, 360, t / m_wallMoveDuration);
             yield return null;
@@ -80,7 +84,7 @@ public class PlayerMovementScript : MonoBehaviour
     }
     private void StopWallMoving(){
         StopCoroutine(StartWallWalking());
-        m_state = State.DEFAULT;
+        m_state.state = PlayerState.State.DEFAULT;
     }
 
     private float m_climbForceMultiplier = 1f;
@@ -90,7 +94,7 @@ public class PlayerMovementScript : MonoBehaviour
             yield break;
         m_climbDirection = m_direction;
         m_climbForceMultiplier = 1f;
-        m_state = State.CLIMB_TO_WALL;
+        m_state.state = PlayerState.State.CLIMB_TO_WALL;
         while(m_climbForceMultiplier > 0){
             m_climbForceMultiplier -= Time.deltaTime / 2;
             yield return null;
@@ -101,9 +105,8 @@ public class PlayerMovementScript : MonoBehaviour
         m_body.velocity = new Vector2(input * speed, speed * m_climbForceMultiplier * Mathf.Abs(input));
     }
     private void StopWallClimbing(){
-        Debug.Log("Stop wall climbing");
         StopCoroutine(StartWallClimbing());
-        m_state = State.DEFAULT;
+        m_state.state = PlayerState.State.DEFAULT;
     }
 
     private void Jump(){
@@ -123,22 +126,22 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     private IEnumerator WallJump(){
-        m_state = State.WALL_JUMP;
+        m_state.state = PlayerState.State.WALL_JUMP;
         m_body.velocity = new Vector2((Mathf.Abs(m_body.velocity.x) + speed) * m_direction * -1, jumpForce);
         yield return new WaitForSeconds(0.5f);
-        m_state = State.DEFAULT;
+        m_state.state = PlayerState.State.DEFAULT;
     }
 
     private void Dash(){
         m_animator.SetTrigger("Dash");
-        m_state = State.DASH;
+        m_state.state = PlayerState.State.DASH;
         m_body.velocity = new Vector2((Mathf.Abs(m_body.velocity.x) + speed) * m_direction, m_body.velocity.y);
         StartCoroutine(EndDash(0.5f));
     }
 
     private IEnumerator EndDash(float timer){
         yield return new WaitForSeconds(timer);
-        m_state = State.DEFAULT;
+        m_state.state = PlayerState.State.DEFAULT;
     }
 
     private void Flip(){
@@ -148,9 +151,9 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void UpdateAnimator(){
         m_animator.SetBool("IsGrounded", groundSensor.State());
-        if(m_state == State.DEFAULT && m_body.velocity.x != 0)
+        if(m_state.state == PlayerState.State.DEFAULT && m_body.velocity.x != 0)
             m_animator.SetInteger("AnimState", 1);
-        else if(m_state == State.DEFAULT)
+        else if(m_state.state == PlayerState.State.DEFAULT)
             m_animator.SetInteger("AnimState", 0);
     }
 
@@ -163,7 +166,6 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     private void OnWallExit(Collider2D col){
-        Debug.Log("Wall exit");
         if(col.gameObject.layer == LayerMask.NameToLayer("Ground")){
             if(m_direction == m_climbDirection && m_body.velocity.y > 0)
                 SimpleJump();
@@ -187,11 +189,4 @@ public class PlayerMovementScript : MonoBehaviour
             m_isAbleToWallWalk = false;
     }
 
-    enum State{
-        DEFAULT,
-        MOVE_ON_WALL,
-        CLIMB_TO_WALL,
-        WALL_JUMP,
-        DASH
-    }
 }

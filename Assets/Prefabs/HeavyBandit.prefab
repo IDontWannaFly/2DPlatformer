@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 810361133}
   - component: {fileID: 810361135}
   - component: {fileID: 2029857747283171021}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,6 +75,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  player: {fileID: 0}
 --- !u!1 &1111540470
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +259,7 @@ GameObject:
   - component: {fileID: 212652212501150786}
   - component: {fileID: 50959880312528810}
   - component: {fileID: 61346583712760016}
-  - component: {fileID: 4333452900086993154}
+  - component: {fileID: 686387953}
   m_Layer: 7
   m_Name: HeavyBandit
   m_TagString: Player
@@ -401,7 +402,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1.2}
   m_EdgeRadius: 0
---- !u!114 &4333452900086993154
+--- !u!114 &686387953
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -410,17 +411,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1463392086428580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc01b3f89033c9d42b39fc17e46b6078, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b936fd0851c3ea4bbf88483c98bc2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkDelay: 5
-  attackDelay: 3
-  speed: 5
-  enemyLayer:
+  health: 100
+  attackDelay: 2
+  speed: 4
+  hurtDelay: 0.5
+  enemyLayers:
     serializedVersion: 2
     m_Bits: 64
-  health: 100
-  m_detector: {fileID: 2029857747283171021}
-  attackRange: 0.39
+  damage: 10
+  detector: {fileID: 2029857747283171021}
+  lookTime: 5
+  attackRange: 0.25
   attackPoint: {fileID: 1843926805}
-  damage: 20

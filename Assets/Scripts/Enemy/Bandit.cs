@@ -28,7 +28,7 @@ public class Bandit : MonoBehaviour, EnemyDetector.EnemyDetectorCallback {
         m_body = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
         if(m_detector != null)
-            m_detector.attachCallback(this);
+            m_detector.AttachCallback(this);
         state = State.IDLE;
         m_checkDelay = checkDelay;
         m_health = health;

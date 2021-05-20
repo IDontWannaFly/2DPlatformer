@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 3088596598590989111}
   - component: {fileID: 3088596598590989110}
   - component: {fileID: 3088596598590989105}
-  - component: {fileID: 3088596598590989109}
   - component: {fileID: 3088596598590989108}
   - component: {fileID: 3088596598590989114}
   - component: {fileID: 3088596598590989115}
   - component: {fileID: 3088596598590989112}
+  - component: {fileID: 140331236}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.03, y: 1.49}
+  m_Size: {x: 1.15, y: 1.55}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -111,32 +111,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &3088596598590989109
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3088596598590989104}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.03, y: 1.49}
-    newSize: {x: 1.03, y: 1.49}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.03, y: 1.49}
-  m_EdgeRadius: 0
 --- !u!50 &3088596598590989108
 Rigidbody2D:
   serializedVersion: 4
@@ -170,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03be47abd3ff24c4f9b44d24d68992c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &3088596598590989115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +176,28 @@ MonoBehaviour:
   groundSensor: {fileID: 3088596600471644458}
   wallSensor: {fileID: 3088596600424755557}
   attackDelay: 0.6
+  attackPoint: {fileID: 3088596600183971545}
+  attackRange: 0.8
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  damage: 20
+--- !u!70 &140331236
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088596598590989104}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.14683032, y: -0.09436935}
+  m_Size: {x: 0.7359562, y: 1.3012613}
+  m_Direction: 0
 --- !u!1 &3088596599599423076
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3088596599599423077}
   - component: {fileID: 3088596599599423082}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: DashWind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +321,7 @@ GameObject:
   - component: {fileID: 3088596600424755556}
   - component: {fileID: 3088596600424755562}
   - component: {fileID: 3088596600424755557}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WallSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +391,7 @@ GameObject:
   - component: {fileID: 3088596600471644456}
   - component: {fileID: 3088596600471644459}
   - component: {fileID: 3088596600471644458}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GroundSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

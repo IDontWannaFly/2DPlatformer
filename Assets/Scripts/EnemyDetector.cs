@@ -10,27 +10,23 @@ public class EnemyDetector : MonoBehaviour
 
     private EnemyDetectorCallback callback;
 
-    public void attachCallback(EnemyDetectorCallback callback){
+    public void AttachCallback(EnemyDetectorCallback callback){
         this.callback = callback;
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other) {
-        var hitResults = new RaycastHit2D[2];
         var hit = Physics2D.Raycast(
             transform.position, 
             new Vector3(
-                other.transform.position.x, 
-                other.transform.position.y + other.transform.lossyScale.y / 2) - transform.position, 
-            new ContactFilter2D(){
-                useLayerMask = true,
-                layerMask = enemyLayer | LayerMask.GetMask("Ground")
-            }, 
-            hitResults, Vector2.Distance(transform.position, other.transform.position));
-        if(hit > 0 && hit < 2){
-            if((enemyLayer.value & 1<<other.gameObject.layer) != 0)
-                if(callback != null)
-                    callback.OnDetected(other);
-        }
+                other.transform.position.x,
+                other.transform.position.y + other.transform.lossyScale.y / 2
+            ) - transform.position,
+            Vector2.Distance(transform.position, other.transform.position),
+            enemyLayer | LayerMask.GetMask("Ground")
+        );
+        if(hit.collider != null && (enemyLayer.value & 1 << hit.collider.gameObject.layer) != 0)
+            if(callback != null)
+                callback.OnDetected(other);
     }
 
     private void OnTriggerExit2D(Collider2D other) {

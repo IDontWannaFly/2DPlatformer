@@ -1,6 +1,6 @@
-*.csproj
-*.sln
-/Temp/**
-.vscode
-/Logs/**
-/Library/**
+Mark/*.csproj
+Mark/*.sln
+Mark/Temp/**
+Mark/.vscode
+Mark/Logs/**
+Mark/Library/**

@@ -166,7 +166,7 @@
      <elementSeq exposures="3" val="4" id="14"/>
      <elementSeq exposures="4" val="6" id="14"/>
     </column>
-    <column type="0" name="easycreepdied" displayOrder="0" width="100" anonymous="true" id="15">
+    <column type="0" name="easycreepdied" display="false" displayOrder="0" width="100" anonymous="true" id="15">
      <elementSeq exposures="1" val="1" id="15"/>
      <elementSeq exposures="2" val="2" id="15"/>
      <elementSeq exposures="3" val="3" id="15"/>
@@ -174,7 +174,7 @@
      <elementSeq exposures="5" val="5" id="15"/>
      <elementSeq exposures="6" val="7" id="15"/>
     </column>
-    <column type="0" name="ATV-0AB6F350CA305A97" display="false" displayOrder="0" width="100" anonymous="true" id="16">
+    <column type="0" name="ATV-0AB6F350CA305A97" displayOrder="0" width="100" anonymous="true" id="16">
      <elementSeq exposures="1-37" val="1" id="16"/>
     </column>
    </columns>
@@ -186,7 +186,7 @@
      <collapsed val="false"/>
     </options>
     <nodeslist>
-     <module type="COMPOSITE" name="Composite" pos="-55,0,18" publishUnderTab="Composite">
+     <module type="COMPOSITE" name="Composite" pos="-55,0,17" publishUnderTab="Composite">
       <options>
        <collapsed val="false"/>
        <version val="1"/>
@@ -205,7 +205,7 @@
        <mergeVector val="false"/>
       </attrs>
      </module>
-     <module type="DISPLAY" name="Display" pos="50,50,19" publishUnderTab="Display">
+     <module type="DISPLAY" name="Display" pos="50,50,18" publishUnderTab="Display">
       <options>
        <collapsed val="false"/>
        <version val="1"/>
@@ -239,7 +239,7 @@
        <cleanUpPartitionFolders val="true"/>
       </attrs>
      </module>
-     <module type="READ" name="Drawing_1" pos="0,0,17" publishUnderTab="Drawing_1">
+     <module type="READ" name="Drawing_1" pos="0,0,16" publishUnderTab="Drawing_1">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -351,7 +351,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="stena" pos="0,0,16" publishUnderTab="stena">
+     <module type="READ" name="stena" pos="0,0,15" publishUnderTab="stena">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -463,7 +463,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="potolok" pos="0,0,15" publishUnderTab="potolok">
+     <module type="READ" name="potolok" pos="0,0,14" publishUnderTab="potolok">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -575,7 +575,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="platfrom" pos="0,0,14" publishUnderTab="platfrom">
+     <module type="READ" name="platfrom" pos="0,0,13" publishUnderTab="platfrom">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -687,7 +687,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="middleplatform" pos="0,0,13" publishUnderTab="middleplatform">
+     <module type="READ" name="middleplatform" pos="0,0,12" publishUnderTab="middleplatform">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -799,7 +799,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="lestnica" pos="0,0,12" publishUnderTab="lestnica">
+     <module type="READ" name="lestnica" pos="0,0,11" publishUnderTab="lestnica">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -911,7 +911,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="lestnicaTOP" pos="0,0,11" publishUnderTab="lestnicaTOP">
+     <module type="READ" name="lestnicaTOP" pos="0,0,10" publishUnderTab="lestnicaTOP">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -1023,7 +1023,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="lestnicaBot" pos="0,0,10" publishUnderTab="lestnicaBot">
+     <module type="READ" name="lestnicaBot" pos="0,0,9" publishUnderTab="lestnicaBot">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -1135,7 +1135,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="stupeni" pos="0,0,9" publishUnderTab="stupeni">
+     <module type="READ" name="stupeni" pos="0,0,8" publishUnderTab="stupeni">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -1247,7 +1247,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="door" pos="0,0,8" publishUnderTab="door">
+     <module type="READ" name="door" pos="0,0,7" publishUnderTab="door">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -1359,7 +1359,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="easycreepatack" pos="-13,0,7" publishUnderTab="easycreep">
+     <module type="READ" name="easycreepatack" pos="-13,0,6" publishUnderTab="easycreep">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -1471,9 +1471,8 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="design" pos="0,0,6" publishUnderTab="desing">
+     <module type="READ" name="design" pos="0,0,5" publishUnderTab="desing">
       <options>
-       <disabled val="true"/>
        <collapsed val="false"/>
        <version val="1"/>
       </options>
@@ -1583,7 +1582,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="easycreepidle" pos="0,0,5" publishUnderTab="easycreepidle">
+     <module type="READ" name="easycreepidle" pos="0,0,4" publishUnderTab="easycreepidle">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>
@@ -1695,8 +1694,9 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="easycreepdied" pos="2,0,4" publishUnderTab="easycreepdoed">
+     <module type="READ" name="easycreepdied" pos="2,0,3" publishUnderTab="easycreepdoed">
       <options>
+       <disabled val="true"/>
        <collapsed val="false"/>
        <version val="1"/>
       </options>
@@ -1806,7 +1806,7 @@
        <tileVertical val="false"/>
       </attrs>
      </module>
-     <module type="READ" name="whitescheen" pos="0,0,3" publishUnderTab="whitescheen">
+     <module type="READ" name="whitescheen" pos="0,0,2" publishUnderTab="whitescheen">
       <options>
        <disabled val="true"/>
        <collapsed val="false"/>

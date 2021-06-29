@@ -64,4 +64,7 @@
   <Drawing Key="" Name="6" Version="1"/>
   <Drawing Key="" Name="7" Version="1"/>
  </Element>
+ <Element Name="whitescheen" ID="16" Folder="whitescheen">
+  <Drawing Key="" Name="1" Version="1"/>
+ </Element>
 </SceneVersion>

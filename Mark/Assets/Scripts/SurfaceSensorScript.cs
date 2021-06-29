@@ -9,6 +9,8 @@ public class SurfaceSensorScript : MonoBehaviour
     [Serializable]
     private class StateEvent : UnityEvent<Collider2D> {}
 
+    public LayerMask surfaceLayers;
+
     private int m_colCount = 0;
     private float m_delay = 0f;
     private StateEvent m_enterEvent = new StateEvent();
@@ -35,12 +37,16 @@ public class SurfaceSensorScript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        m_colCount += 1;
-        m_enterEvent.Invoke(other);
+        if((surfaceLayers.value & 1 << other.gameObject.layer) != 0){
+            m_colCount += 1;
+            m_enterEvent.Invoke(other);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        m_colCount -= 1;
-        m_exitEvent.Invoke(other);
+        if((surfaceLayers.value & 1 << other.gameObject.layer) != 0){
+            m_colCount -= 1;
+            m_exitEvent.Invoke(other);
+        }
     }
 }

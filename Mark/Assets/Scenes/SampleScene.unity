@@ -485,6 +485,7 @@ GameObject:
   - component: {fileID: 707035100}
   - component: {fileID: 707035099}
   - component: {fileID: 707035102}
+  - component: {fileID: 707035103}
   m_Layer: 10
   m_Name: Door
   m_TagString: Door
@@ -574,7 +575,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &707035102
 BoxCollider2D:
@@ -602,6 +603,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.890409, y: 2.16}
   m_EdgeRadius: 0
+--- !u!114 &707035103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707035098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab8426dfa9092242a50389cd4f4a4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &954033421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,7 +1931,7 @@ Transform:
   m_LocalScale: {x: 27.076204, y: 14.724532, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1412530041
 Animator:
@@ -1948,7 +1961,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 686387953, guid: b619f9f0410d0cc4e8821b1c7709f4f0, type: 3}
       propertyPath: damage
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1463392086428580, guid: b619f9f0410d0cc4e8821b1c7709f4f0, type: 3}
       propertyPath: m_Name
@@ -2014,6 +2027,22 @@ PrefabInstance:
     - target: {fileID: 3088596598590989104, guid: e89bfbce5ca5a04438fb3287c7d16f99, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3088596598590989110, guid: e89bfbce5ca5a04438fb3287c7d16f99, type: 3}
+      propertyPath: m_Size.x
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3088596598590989110, guid: e89bfbce5ca5a04438fb3287c7d16f99, type: 3}
+      propertyPath: m_Size.y
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3088596598590989110, guid: e89bfbce5ca5a04438fb3287c7d16f99, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b1a6832748f66ce4bb11bae8c236b08f, type: 3}
+    - target: {fileID: 3088596598590989110, guid: e89bfbce5ca5a04438fb3287c7d16f99, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3088596598590989111, guid: e89bfbce5ca5a04438fb3287c7d16f99, type: 3}
       propertyPath: m_RootOrder

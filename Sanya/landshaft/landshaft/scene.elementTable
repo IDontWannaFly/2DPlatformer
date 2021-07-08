@@ -15,4 +15,5 @@
  <element id="14" elementName="easycreepidle" elementFolder="easycreepidle" pixmapFormat="2" scanType="2" fieldChart="12" vectorType="2" rootFolder="elements"/>
  <element id="15" elementName="easycreepdied" elementFolder="easycreepdied" pixmapFormat="2" scanType="2" fieldChart="12" vectorType="2" rootFolder="elements"/>
  <element id="16" elementName="whitescheen" elementFolder="whitescheen" pixmapFormat="2" scanType="2" fieldChart="12" vectorType="2" rootFolder="elements"/>
+ <element id="17" elementName="walk" elementFolder="walk" pixmapFormat="2" scanType="2" fieldChart="12" vectorType="2" rootFolder="elements"/>
 </elements>

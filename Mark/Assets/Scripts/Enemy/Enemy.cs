@@ -7,7 +7,6 @@ public abstract class Enemy : MonoBehaviour
     public float health = 100f;
     public float attackDelay = 3f;
     public float speed = 4f;
-    public float hurtDelay = 0.1f;
     public LayerMask enemyLayers;
     public float damage;
 

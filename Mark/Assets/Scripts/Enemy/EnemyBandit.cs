@@ -105,7 +105,7 @@ public sealed class EnemyBandit : Enemy, EnemyDetector.EnemyDetectorCallback
         enabled = false;
         detector.enabled = false;
         m_body.simulated = false;
-        GetComponent<BoxCollider2D>().enabled = false;
+        //GetComponent<BoxCollider2D>().enabled = false;
     }
 
     public override void Hurt(float damage)

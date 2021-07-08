@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HeavyBandit_Attack
+  m_Name: Bandit_Death
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,17 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 5ea810d89ccf5d34596799f6239872c9, type: 3}
+      value: {fileID: 21300000, guid: 5b82341058ff20a45bbe3514d7d60ea7, type: 3}
     - time: 0.125
-      value: {fileID: 21300000, guid: 0234bcc00bf1b3b418e72b1b36511bfd, type: 3}
-    - time: 0.16666667
-      value: {fileID: 21300000, guid: df9b6a53e81f80247b7a5caa2a39d048, type: 3}
-    - time: 0.20833333
-      value: {fileID: 21300000, guid: 32bf07564c9738142af4dba9f8ee8304, type: 3}
+      value: {fileID: 21300000, guid: 9e6bc64366da0964daf998e9bfab32e7, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: 17e21d2c8ce877d4a82523ce0bb19bd1, type: 3}
+      value: {fileID: 21300000, guid: 142b277790b28174fbe1af094eb03159, type: 3}
+    - time: 0.375
+      value: {fileID: 21300000, guid: 1b1a553a698ccc443a6795c820662ada, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: c3e642e6cc510b147849f7a6f8d942b8, type: 3}
+    - time: 0.625
+      value: {fileID: 21300000, guid: e7018e84f882eb94c9bb5646305a400c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,17 +50,18 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 5ea810d89ccf5d34596799f6239872c9, type: 3}
-    - {fileID: 21300000, guid: 0234bcc00bf1b3b418e72b1b36511bfd, type: 3}
-    - {fileID: 21300000, guid: df9b6a53e81f80247b7a5caa2a39d048, type: 3}
-    - {fileID: 21300000, guid: 32bf07564c9738142af4dba9f8ee8304, type: 3}
-    - {fileID: 21300000, guid: 17e21d2c8ce877d4a82523ce0bb19bd1, type: 3}
+    - {fileID: 21300000, guid: 5b82341058ff20a45bbe3514d7d60ea7, type: 3}
+    - {fileID: 21300000, guid: 9e6bc64366da0964daf998e9bfab32e7, type: 3}
+    - {fileID: 21300000, guid: 142b277790b28174fbe1af094eb03159, type: 3}
+    - {fileID: 21300000, guid: 1b1a553a698ccc443a6795c820662ada, type: 3}
+    - {fileID: 21300000, guid: c3e642e6cc510b147849f7a6f8d942b8, type: 3}
+    - {fileID: 21300000, guid: e7018e84f882eb94c9bb5646305a400c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.29166666
+    m_StopTime: 0.6666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

@@ -48,7 +48,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -118,19 +118,19 @@ TextureImporter:
       name: potolok_0
       rect:
         serializedVersion: 2
-        x: 1181
-        y: 522
-        width: 209
-        height: 204
+        x: 1178
+        y: 521
+        width: 216
+        height: 216
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -104.5, y: -102}
-        - {x: -104.5, y: 102}
-        - {x: 104.5, y: 102}
-        - {x: 104.5, y: -102}
+      - - {x: -108, y: -108}
+        - {x: -108, y: 108}
+        - {x: 108, y: 108}
+        - {x: 108, y: -108}
       tessellationDetail: 0
       bones: []
       spriteID: 094c77ece9fb6caa0800000000000000

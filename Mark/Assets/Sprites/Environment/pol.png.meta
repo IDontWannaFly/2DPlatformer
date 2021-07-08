@@ -121,9 +121,9 @@ TextureImporter:
       name: pol_0
       rect:
         serializedVersion: 2
-        x: 1178
-        y: 124
-        width: 209
+        x: 1175
+        y: 125
+        width: 216
         height: 216
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -134,10 +134,10 @@ TextureImporter:
         - {x: 104.5, y: 108}
         - {x: 104.5, y: -108}
       physicsShape:
-      - - {x: -104.5, y: -108}
-        - {x: -104.5, y: 92}
-        - {x: 104.5, y: 92}
-        - {x: 104.5, y: -108}
+      - - {x: -108, y: -108}
+        - {x: -108, y: 91}
+        - {x: 108, y: 91}
+        - {x: 108, y: -108}
       tessellationDetail: 1
       bones: []
       spriteID: 75e60f38d53956160800000000000000

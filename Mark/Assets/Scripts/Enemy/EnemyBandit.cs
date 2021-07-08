@@ -110,8 +110,6 @@ public sealed class EnemyBandit : Enemy, EnemyDetector.EnemyDetectorCallback
 
     public override void Hurt(float damage)
     {
-        if(m_curHurtDelay > 0)
-            return;
         m_animator.SetTrigger("Hurt");
         base.Hurt(damage);
     }

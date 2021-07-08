@@ -7,13 +7,12 @@ public abstract class Enemy : MonoBehaviour
     public float health = 100f;
     public float attackDelay = 3f;
     public float speed = 4f;
-    public float hurtDelay = 0.5f;
+    public float hurtDelay = 0.1f;
     public LayerMask enemyLayers;
     public float damage;
 
     protected Animator m_animator;
     protected float m_curHealth;
-    protected float m_curHurtDelay;
     protected int m_curDir = 1;
     // Start is called before the first frame update
     void Start()
@@ -24,14 +23,11 @@ public abstract class Enemy : MonoBehaviour
     }
 
     void Update(){
-        if(m_curHurtDelay > 0)
-            m_curHurtDelay -= Time.deltaTime;
         UpdateChild();
     }
 
     public virtual void Hurt(float damage){
         Debug.Log("Hurt");
-        m_curHurtDelay = hurtDelay;
         m_curHealth -= damage;
         if(m_curHealth <= 0)
             Die();
@@ -49,4 +45,11 @@ public abstract class Enemy : MonoBehaviour
     protected abstract void Attack();
     protected abstract void Die();
     protected abstract void UpdateAnimator();
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log($"Trigger: {other.name} enter 2D");
+        if(other.tag == Constants.Tags.ATTACK_POINT)
+            Hurt(other.GetComponentInParent<PlayerCombatScript>().damage);
+    }
+
 }
